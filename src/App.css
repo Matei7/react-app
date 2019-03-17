@@ -9,14 +9,12 @@
 }
 
 .App-header {
-    background: url('header_img.jpg') no-repeat center;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-    min-height: 500px;
     position: relative;
     background-size: cover;
 }

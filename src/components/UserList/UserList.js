@@ -29,7 +29,7 @@ class UserList extends React.Component {
                 <Row>
                     {data ? data.map(element => {
                         return (
-                            <Col xl="3">
+                            <Col xl="3" key={element.id}>
                                 <UserCard user={element}/>
                             </Col>
                         )

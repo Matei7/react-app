@@ -4,3 +4,11 @@
     width: 100%;
 }
 
+
+p {
+    margin: auto !important;
+}
+
+.PrimarySearchAppBar-inputRoot-7 {
+    display: block !important;
+}

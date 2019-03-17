@@ -4,5 +4,6 @@
   "location": "Location",
   "doctors": "Doctors",
   "speciality": "Specialty",
-  "graduation_year": "Graduation year"
+  "graduation_year": "Graduation year",
+  "open_profile": "Open Profile"
 }

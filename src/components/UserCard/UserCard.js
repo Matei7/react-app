@@ -24,7 +24,7 @@ class UserCard extends React.Component {
                     <img width="100%" src={user.poza} alt="Card image cap"/>
                     <CardBody>
                         <CardText>{i18n.t('speciality')+': '+user.specializare}</CardText>
-                        <CardLink href="#">Card Link</CardLink>
+                        <CardLink href="#">{i18n.t('open_profile')}</CardLink>
                     </CardBody>
                 </Card>
             </div>
