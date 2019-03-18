@@ -26,15 +26,15 @@ class UserList extends React.Component {
         const {data} = this.state;
         return (
             <Container>
-                <Row>
+
                     {data ? data.map(element => {
                         return (
-                            <Col xl="3" key={element.id}>
+
                                 <UserCard user={element}/>
-                            </Col>
+
                         )
                     }) : 'No data'}
-                </Row>
+
             </Container>
         );
     }

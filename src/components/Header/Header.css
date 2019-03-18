@@ -1,7 +1,5 @@
-.header-appbar {
-    position: absolute;
-    top: 0;
-    width: 100%;
+header{
+    background-color: #db2828 !important;
 }
 
 

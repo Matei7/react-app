@@ -1,3 +1,54 @@
-.font-12{
-  font-size: 12px;
+@media only screen and (max-width: 768px) {
+    .ui.grid > .row > [class*="nine wide"].column {
+        width: 100% !important;
+        box-shadow: none !important;
+    }
+
+    .ui.grid > .row > [class*="three wide"].column {
+        width: 100% !important;
+        box-shadow: none !important;
+        bottom: 25px;
+    }
+
+    .ui.grid > .row > [class*="nine wide"].column i {
+        display: none;
+    }
+
+    .ui.grid > .row > [class*="four wide"].column {
+        margin: auto !important;
+        width: 35% !important;
+    }
+}
+
+
+i.circular.icon {
+    box-shadow: 0 0 0 0.1em #db2828 inset;
+}
+
+.ui.divider:not(.vertical):not(.horizontal) {
+    border-top: 2px solid rgba(34, 36, 38, .15);
+    border-bottom: 2px solid rgba(255, 255, 255, .1);
+}
+
+
+img{
+    border: 1px solid #000 !important;
+}
+
+.segments {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.speciality {
+    color: #db2828;
+}
+
+.graduation {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.column button {
+    top: 50%;
+    width: 180px;
 }

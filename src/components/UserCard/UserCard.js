@@ -1,9 +1,8 @@
 import './UserCard.css';
 import React from 'react';
-import {Card, CardLink, CardText, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
 import i18n from '../../i18n';
 import {withNamespaces} from "react-i18next";
-
+import {Responsive,Grid, Image, Button, Header, Icon, Segment, Divider} from 'semantic-ui-react';
 
 class UserCard extends React.Component {
 
@@ -15,18 +14,34 @@ class UserCard extends React.Component {
     render() {
         const {user} = this.props;
         return (
-            <div className="my-3">
-                <Card>
-                    <CardBody>
-                        <CardTitle>{user.nume}</CardTitle>
-                        <CardSubtitle className="font-12">{user.an_absolvire}</CardSubtitle>
-                    </CardBody>
-                    <img width="100%" src={user.poza} alt="Card image cap"/>
-                    <CardBody>
-                        <CardText>{i18n.t('speciality')+': '+user.specializare}</CardText>
-                        <CardLink href="#">{i18n.t('open_profile')}</CardLink>
-                    </CardBody>
-                </Card>
+            <div>
+                <Segment.Group><Responsive as={Segment}>
+                <Grid celled='internally'>
+                    <Grid.Row>
+                        <Grid.Column width={4} className={'dev-app'}>
+                            <Image src={user.poza} size='medium' circular/>
+                        </Grid.Column>
+                        <Grid.Column width={9} className={'dev-app'}>
+                            <Header as='h2' icon textAlign='center'>
+                                <Icon name='user md' circular/>
+                                <Header.Content dividing>{user.nume}</Header.Content>
+                                <span
+                                    className={'graduation'}>{i18n.t('graduation_year') + ': ' + user.an_absolvire.slice(0, 10)}</span>
+                                <Segment stacked className={'speciality'}>
+                                    {i18n.t('speciality') + ': ' + user.specializare}
+                                </Segment>
+                            </Header>
+                        </Grid.Column>
+                        <Grid.Column width={3} className={'dev-app'}>
+                            <Button content={i18n.t('open_profile')} icon='right arrow' labelPosition='right'
+                                    color='red'/>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                </Responsive>
+                </Segment.Group>
+                <Divider section/>
+
             </div>
         );
     }
