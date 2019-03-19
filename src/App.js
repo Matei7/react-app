@@ -6,6 +6,7 @@ import Header from 'components/Header/Header'
 import {Route, Switch} from "react-router-dom";
 import HospitalList from "./components/Hospital/HospitalList";
 import UserList from "./components/UserList/UserList";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <Header/>
+                    <Sidebar/>
                 </header>
 
                 <Switch>

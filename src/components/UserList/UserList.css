@@ -1,0 +1,21 @@
+/*.container{*/
+/*max-height: 900px;*/
+/*overflow: auto;*/
+
+/*}*/
+
+/*@media (min-width: 1368px) {*/
+/*.container{*/
+/*max-width: 100% !important;*/
+/*}*/
+/*}*/
+
+
+.header-image {
+    background-image: url('../../header3_img.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 300px;
+    margin-bottom: 25px;
+    background-size: contain;
+}

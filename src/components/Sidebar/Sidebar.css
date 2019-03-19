@@ -1,0 +1,25 @@
+.sidenav---sidenav-nav---3tvij {
+    background: #db2828 !important;
+    height: 100vh;
+    max-width: 150px;
+}
+
+
+@media (max-width: 768px) {
+    .sidenav---collapsed---LQDEv.sidenav---collapsed---LQDEv {
+        background: none !important;
+    }
+
+    .sidenav---collapsed---LQDEv .sidenav---sidenav-nav---3tvij {
+        display: none;
+    }
+
+}
+
+.sidenav-container {
+    background: #db2828 !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}

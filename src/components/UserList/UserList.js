@@ -26,14 +26,14 @@ class UserList extends React.Component {
         const {data} = this.state;
         return (
             <Container>
+                <div className={"header-image"}></div>
+                {data ? data.map(element => {
+                    return (
 
-                    {data ? data.map(element => {
-                        return (
+                        <UserCard key={element.id} user={element}/>
 
-                                <UserCard user={element}/>
-
-                        )
-                    }) : 'No data'}
+                    )
+                }) : 'No data'}
 
             </Container>
         );
