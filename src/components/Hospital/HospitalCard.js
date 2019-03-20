@@ -8,8 +8,8 @@ import {
 import {MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon, } from 'mdbreact';
 import {Link} from 'react-router-dom';
 import {Image} from "semantic-ui-react";
-
-
+import i18n from '../../i18n';
+import {withNamespaces} from "react-i18next";
 
 class HospitalCard extends React.Component {
 
@@ -32,7 +32,7 @@ class HospitalCard extends React.Component {
                         <hr/>
                         <MDBCardTitle tag="h6">{hospital.locatie}</MDBCardTitle>
                         <hr/>
-                        <MDBCardText><Link to="/medics" className={"click_more"}>Click to see more</Link></MDBCardText>
+                        <MDBCardText><Link to="/medics" className={"click_more"}>{i18n.t('see_more')}</Link></MDBCardText>
                         <hr/>
                         <ul className="list-inline py-2">
                             <li className="list-inline-item">
@@ -65,7 +65,7 @@ class HospitalCard extends React.Component {
                         <hr/>
                         <MDBCardTitle tag="h5">{hospital.tip}</MDBCardTitle>
                         <hr/>
-                        <MDBCardText>Hover to see more</MDBCardText>
+                        <MDBCardText>{i18n.t('hover_see')}</MDBCardText>
                     </MDBCardBody>
                 </FlippingCardFront>
             </FlippingCard>
@@ -73,4 +73,4 @@ class HospitalCard extends React.Component {
     }
 }
 
-export default HospitalCard;
+export default withNamespaces()(HospitalCard);

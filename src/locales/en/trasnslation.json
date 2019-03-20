@@ -5,5 +5,7 @@
   "doctors": "Doctors",
   "speciality": "Specialty",
   "graduation_year": "Graduation year",
-  "open_profile": "Open Profile"
+  "open_profile": "Open Profile",
+  "see_more": "Click to see more",
+  "hover_see": "Hover to see more"
 }
