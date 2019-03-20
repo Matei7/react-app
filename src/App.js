@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 import Header from 'components/Header/Header'
-
-
 import {Route, Switch} from "react-router-dom";
 import HospitalList from "./components/Hospital/HospitalList";
 import UserList from "./components/UserList/UserList";

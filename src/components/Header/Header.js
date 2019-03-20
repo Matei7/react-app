@@ -17,8 +17,8 @@ import './Header.css';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import LocalHospital from '@material-ui/icons/LocalHospital';
 import i18n from '../../i18n';
-
-
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 const styles = theme => ({
     root: {
         width: '100%',
@@ -95,6 +95,22 @@ class PrimarySearchAppBar extends React.Component {
         mobileMoreAnchorEl: null,
         lng: 'ro'
     };
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+    constructor(props) {
+        super(props);
+
+        const { cookies } = props;
+
+        const lng =cookies.get('lng') || 'ro';
+        i18n.changeLanguage(lng);
+        this.state = {
+            lng: lng
+        };
+    }
+
+
 
     changeLanguage = () => {
         let lng;
@@ -104,7 +120,10 @@ class PrimarySearchAppBar extends React.Component {
         } else {
             lng = 'ro';
         }
-        console.log(lng);
+
+        const { cookies } = this.props;
+
+        cookies.set('lng', lng, { path: '/' });
         i18n.changeLanguage(lng);
         this.setState({
             lng: lng
@@ -228,4 +247,4 @@ PrimarySearchAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+export default withCookies(withStyles(styles)(PrimarySearchAppBar));
