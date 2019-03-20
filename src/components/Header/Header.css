@@ -5,7 +5,7 @@ header {
     z-index: 9999;
 }
 
-h6 {
+h6.PrimarySearchAppBar-title-4 {
     z-index: 99999;
     margin-left: 40px !important;
 }

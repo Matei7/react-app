@@ -20,11 +20,11 @@ class App extends Component {
                 </header>
 
                 <Switch>
-                    <Route exact path="/" component={UserList}/>
+                    <Route exact path="/" component={HospitalList}/>
                     <Route path="/medics" component={UserList}/>
                     <Route path="/hospital" component={HospitalList}/>
                     {/* when none of the above match, <NoMatch> will be rendered */}
-                    <Route component={UserList}/>
+                    <Route component={HospitalList}/>
                 </Switch>
 
 

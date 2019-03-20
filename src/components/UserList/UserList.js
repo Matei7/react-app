@@ -1,6 +1,6 @@
 import './UserList.css';
 import React from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container} from 'reactstrap';
 import {getMedici} from 'shared/api';
 import UserCard from 'components/UserCard/UserCard'
 

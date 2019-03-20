@@ -1,0 +1,36 @@
+.gplus-ic {
+    color: #dd4b39 !important;
+}
+
+.li-ic {
+    color: #0082ca !important;
+}
+
+.tw-ic {
+    color: #55acee !important;
+}
+
+.fb-ic {
+    color: #3b5998 !important;
+}
+
+.front .view img {
+    margin: 2% auto;
+}
+
+
+img.ui.medium.image {
+    width: 130px !important;
+    margin: 5% auto;
+}
+
+.click_more{
+    color: #db2828 !important;
+}
+
+@media (max-width: 768px) {
+    .col-sm{
+        width:auto !important;
+        margin: auto;
+    }
+}

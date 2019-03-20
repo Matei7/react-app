@@ -13,7 +13,9 @@
     .sidenav---collapsed---LQDEv .sidenav---sidenav-nav---3tvij {
         display: none;
     }
-
+    .sidenav---sidenav-toggle---1KRjR{
+        height: 56px !important;
+    }
 }
 
 .sidenav-container {

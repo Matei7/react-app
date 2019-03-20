@@ -10,7 +10,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {fade} from '@material-ui/core/styles/colorManipulator';
 import {withStyles} from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Language from '@material-ui/icons/Language';
@@ -105,11 +104,12 @@ class PrimarySearchAppBar extends React.Component {
         } else {
             lng = 'ro';
         }
+        console.log(lng);
         i18n.changeLanguage(lng);
         this.setState({
             lng: lng
         });
-    }
+    };
 
 
     handleProfileMenuOpen = event => {
@@ -157,9 +157,9 @@ class PrimarySearchAppBar extends React.Component {
                 open={isMobileMenuOpen}
                 onClose={this.handleMenuClose}
             >
-                <MenuItem onClick={this.handleMobileMenuClose} >
+                <MenuItem onClick={this.handleMobileMenuClose}>
                     <IconButton color="inherit">
-                        <Badge badgeContent={this.state.lng} color="secondary" >
+                        <Badge badgeContent={this.state.lng} color="secondary">
                             <Language/>
                         </Badge>
                     </IconButton>
@@ -197,8 +197,8 @@ class PrimarySearchAppBar extends React.Component {
                         <div className={classes.grow}/>
                         <div className={classes.sectionDesktop}>
                             <IconButton color="inherit">
-                                <Badge badgeContent={this.state.lng} color="secondary" >
-                                    <Language onClick={this.changeLanguage} />
+                                <Badge badgeContent={this.state.lng} color="secondary">
+                                    <Language onClick={this.changeLanguage}/>
                                 </Badge>
                             </IconButton>
                             <IconButton
