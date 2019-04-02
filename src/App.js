@@ -6,6 +6,7 @@ import HospitalList from "./components/Hospital/HospitalList";
 import UserList from "./components/UserList/UserList";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Footer from "./components/Footer/Footer";
+import Login from "./components/UserActions/Login";
 
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
                     <Route exact path="/" component={HospitalList}/>
                     <Route path="/medics" component={UserList}/>
                     <Route path="/hospital" component={HospitalList}/>
+                    <Route path="/login" component={Login}/>
                     {/* when none of the above match, <NoMatch> will be rendered */}
                     <Route component={HospitalList}/>
                 </Switch>

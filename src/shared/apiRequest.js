@@ -1,11 +1,15 @@
-export const request = (path, opts = {})=> {
+export const request = (path, opts = {}) => {
     const headers = Object.assign({},
-                        opts.headers || {},
-                        {'Content-Type': 'application/json'
-                        }
-                    );
+        opts.headers || {},
+        {
+            'Content-Type': 'application/json'
+        }
+    );
+
+    const data = Object.assign({method: 'POST'}, opts, {headers});
+    console.log(data);
     return fetch(
         path,
-        Object.assign({ method: 'POST',}, opts,{headers}),
+        data
     );
 };

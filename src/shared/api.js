@@ -1,6 +1,13 @@
 import {ENDPOINTS} from 'shared/constants';
 import {request} from "shared/apiRequest";
 
+
+export const login = payload => {
+    console.log(payload)
+    return request(ENDPOINTS.ROOT + ENDPOINTS.LOGIN, {data: payload});
+};
+
+
 export const getMedici = () => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI, {method: 'GET'})
 };
@@ -10,9 +17,8 @@ export const getMediciById = (id) => {
 };
 
 export const postMedici = (payload) => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI, {body: JSON.stringify(payload)})
+    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI, payload)
 };
-
 
 
 export const getSpitale = () => {
@@ -26,8 +32,6 @@ export const getSpitalById = (id) => {
 export const postSpital = (payload) => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.SPITALE, {body: JSON.stringify(payload)})
 };
-
-
 
 
 export const getPosts = () => {
@@ -53,10 +57,6 @@ export const sharePost = (payload) => {
 
 export const deletePost = (payload) => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.POST, {method: 'DELETE', body: JSON.stringify(payload)})
-};
-
-export const login = (payload) => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.LOGIN, {body: JSON.stringify(payload)})
 };
 
 

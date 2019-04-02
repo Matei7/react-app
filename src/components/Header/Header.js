@@ -20,7 +20,7 @@ import i18n from '../../i18n';
 import {withCookies, Cookies} from 'react-cookie';
 import {instanceOf} from 'prop-types';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
-
+import {Link} from 'react-router-dom';
 
 const styles = theme => ({
     root: {
@@ -216,19 +216,22 @@ class PrimarySearchAppBar extends React.Component {
                                     <Language/>
                                 </Badge>
                             </IconButton>
-                            <IconButton>
-                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                    <DropdownToggle>
-                                        <AccountCircle/>
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem>{!this.state.isLogged ? 'Login' : 'My Profile'}</DropdownItem>
-                                        <DropdownItem divider/>
-                                        <DropdownItem>{!this.state.isLogged ? 'Register' : 'Sign out'}</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown>
 
-                            </IconButton>
+                            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <DropdownToggle>
+                                    <AccountCircle/>
+                                </DropdownToggle>
+                                <DropdownMenu>
+
+                                    <DropdownItem>{this.state.isLogged ? <Link to="login">MyProfile</Link>:  <Link to="login">Login</Link>}</DropdownItem>
+                                    <DropdownItem divider/>
+                                    <DropdownItem>{this.state.isLogged ?  <Link to="login">Register</Link> : <Link to="login">SignOut</Link>}</DropdownItem>
+
+
+                                </DropdownMenu>
+                            </Dropdown>
+
+
                         </div>
                         <div className={classes.sectionMobile}>
                             <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">

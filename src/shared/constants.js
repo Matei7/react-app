@@ -1,8 +1,9 @@
-const ENDPOINTS ={
+const ENDPOINTS = {
 
-    ROOT: 'https://5c8a5e7c0861d300146f73c6.mockapi.io/api/v1',
+    ROOT: 'http://localhost/daw',
 
     MEDICI: '/medici',
+    LOGIN: '/login',
 
     MEDICI_BY_ID: '/medici?id=',
 
