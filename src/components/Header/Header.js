@@ -19,6 +19,8 @@ import LocalHospital from '@material-ui/icons/LocalHospital';
 import i18n from '../../i18n';
 import {withCookies, Cookies} from 'react-cookie';
 import {instanceOf} from 'prop-types';
+import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
+
 
 const styles = theme => ({
     root: {
@@ -104,14 +106,21 @@ class PrimarySearchAppBar extends React.Component {
         super(props);
 
         const {cookies} = props;
-
+        this.toggle = this.toggle.bind(this);
         const lng = cookies.get('lng') || 'ro';
         i18n.changeLanguage(lng);
         this.state = {
-            lng: lng
+            lng: lng,
+            dropdownOpen: false,
+            logged: localStorage.getItem('isLogged') || false
         };
     }
 
+    toggle() {
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+        }));
+    }
 
     changeLanguage = () => {
         let lng;
@@ -147,7 +156,6 @@ class PrimarySearchAppBar extends React.Component {
 
     handleMobileMenuClose = () => {
         this.setState({mobileMoreAnchorEl: null});
-        this.changeLanguage();
     };
 
     render() {
@@ -155,19 +163,6 @@ class PrimarySearchAppBar extends React.Component {
         const {classes} = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-        const renderMenu = (
-            <Menu
-                anchorEl={anchorEl}
-                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-                transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                open={isMenuOpen}
-                onClose={this.handleMenuClose}
-            >
-                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-            </Menu>
-        );
 
         const renderMobileMenu = (
             <Menu
@@ -218,16 +213,21 @@ class PrimarySearchAppBar extends React.Component {
                         <div className={classes.sectionDesktop}>
                             <IconButton color="inherit" onClick={this.changeLanguage}>
                                 <Badge badgeContent={this.state.lng} color="secondary">
-                                    <Language />
+                                    <Language/>
                                 </Badge>
                             </IconButton>
-                            <IconButton
-                                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                                aria-haspopup="true"
-                                onClick={this.handleProfileMenuOpen}
-                                color="inherit"
-                            >
-                                <AccountCircle/>
+                            <IconButton>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                    <DropdownToggle>
+                                        <AccountCircle/>
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>{!this.state.isLogged ? 'Login' : 'My Profile'}</DropdownItem>
+                                        <DropdownItem divider/>
+                                        <DropdownItem>{!this.state.isLogged ? 'Register' : 'Sign out'}</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+
                             </IconButton>
                         </div>
                         <div className={classes.sectionMobile}>
@@ -237,7 +237,6 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                {renderMenu}
                 {renderMobileMenu}
             </div>
         );

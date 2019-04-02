@@ -24,13 +24,12 @@ img.ui.medium.image {
     margin: 5% auto;
 }
 
-.click_more{
+.click_more {
     color: #db2828 !important;
 }
 
 @media (max-width: 768px) {
-    .col-sm{
-        width:auto !important;
-        margin: auto;
+    .flipping-card-container {
+        margin: 0 auto !important;
     }
 }

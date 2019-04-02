@@ -23,7 +23,27 @@ p {
     display: block !important;
 }
 
-.git-ic{
+.git-ic {
     width: 32px;
     color: black !important;
+}
+
+.MuiIconButton-root-113:hover {
+    background: transparent !important;
+}
+
+.btn-secondary, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .btn-secondary:not([disabled]):not(.disabled):active {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown-menu{
+    transform: translate3d(-55px, 40px, 0px) !important;
 }
