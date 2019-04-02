@@ -22,3 +22,8 @@ p {
 .PrimarySearchAppBar-inputRoot-7 {
     display: block !important;
 }
+
+.git-ic{
+    width: 32px;
+    color: black !important;
+}

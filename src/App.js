@@ -5,9 +5,13 @@ import {Route, Switch} from "react-router-dom";
 import HospitalList from "./components/Hospital/HospitalList";
 import UserList from "./components/UserList/UserList";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Footer from "./components/Footer/Footer";
 
 
 class App extends Component {
+
+
+
 
     render() {
         return (
@@ -25,7 +29,7 @@ class App extends Component {
                     <Route component={HospitalList}/>
                 </Switch>
 
-
+                <Footer/>
             </div>
         );
     }

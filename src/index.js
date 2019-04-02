@@ -11,10 +11,13 @@ import 'i18n.js';
 import {BrowserRouter} from 'react-router-dom';
 import {CookiesProvider} from 'react-cookie';
 
-ReactDOM.render(<CookiesProvider><BrowserRouter>
-
-        <App/>
-</BrowserRouter></CookiesProvider>, document.getElementById('root'));
+ReactDOM.render(
+    <CookiesProvider>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
+    </CookiesProvider>
+    , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

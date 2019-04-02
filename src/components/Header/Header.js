@@ -17,8 +17,9 @@ import './Header.css';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import LocalHospital from '@material-ui/icons/LocalHospital';
 import i18n from '../../i18n';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import {withCookies, Cookies} from 'react-cookie';
+import {instanceOf} from 'prop-types';
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -98,18 +99,18 @@ class PrimarySearchAppBar extends React.Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
+
     constructor(props) {
         super(props);
 
-        const { cookies } = props;
+        const {cookies} = props;
 
-        const lng =cookies.get('lng') || 'ro';
+        const lng = cookies.get('lng') || 'ro';
         i18n.changeLanguage(lng);
         this.state = {
             lng: lng
         };
     }
-
 
 
     changeLanguage = () => {
@@ -121,9 +122,9 @@ class PrimarySearchAppBar extends React.Component {
             lng = 'ro';
         }
 
-        const { cookies } = this.props;
+        const {cookies} = this.props;
 
-        cookies.set('lng', lng, { path: '/' });
+        cookies.set('lng', lng, {path: '/'});
         i18n.changeLanguage(lng);
         this.setState({
             lng: lng
@@ -215,9 +216,9 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                         <div className={classes.grow}/>
                         <div className={classes.sectionDesktop}>
-                            <IconButton color="inherit">
+                            <IconButton color="inherit" onClick={this.changeLanguage}>
                                 <Badge badgeContent={this.state.lng} color="secondary">
-                                    <Language onClick={this.changeLanguage}/>
+                                    <Language />
                                 </Badge>
                             </IconButton>
                             <IconButton

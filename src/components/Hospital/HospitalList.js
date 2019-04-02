@@ -29,7 +29,7 @@ class HospitalList extends React.Component {
                 <Row>
                     {data ? data.map(element => {
                         return (
-                            <Col sm>
+                            <Col xl={3}>
                                 <HospitalCard key={element.id} hospital={element}/>
                             </Col>
                         )
