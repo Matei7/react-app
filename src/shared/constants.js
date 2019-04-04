@@ -4,6 +4,7 @@ const ENDPOINTS = {
 
     MEDICI: '/medici',
     LOGIN: '/login',
+    REGISTER: '/register',
 
     MEDICI_BY_ID: '/medici?id=',
 

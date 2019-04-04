@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {Button, FormGroup, FormControl, FormLabel} from "react-bootstrap";
 import "./UserActions.css";
-import {login} from 'shared/api';
+import {register} from 'shared/api';
 import {Alert} from "reactstrap";
 import {Redirect} from "react-router-dom";
 
-export default class Login extends Component {
+export default class Register extends Component {
     constructor(props) {
         super(props);
 
@@ -29,22 +29,18 @@ export default class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const user = {'email': this.state.email, 'password': this.state.password};
-        // var form = new FormData();
-        // form.append('email', this.state.email);
-        // form.append('password', this.state.password);
-
-        login(user).then(response => {
+        register(user).then(response => {
             response.json()
                 .then(responseMessage => {
                     if (responseMessage.success) {
                         localStorage.setItem('isLogged', true);
                         localStorage.setItem('userDetails', responseMessage.data);
                         this.setState({
-                            loginSucces: true,
+                            registerSuccess: true,
                         });
                     } else {
                         this.setState({
-                            loginFailed: true,
+                            registerFailed: true,
                         });
                     }
 
@@ -54,14 +50,14 @@ export default class Login extends Component {
 
     showError = () => {
         return (<Alert color="danger">
-            Login Failed ! Try again.
+            Email already exists!
         </Alert>)
     };
 
 
     redirect = () => {
-        return (<Redirect to='/homepage'/>);
-    }
+        return (<Redirect to='/login'/>);
+    };
 
 
     render() {
@@ -86,8 +82,8 @@ export default class Login extends Component {
                             type="password"
                         />
                     </FormGroup>
-                    {this.state.loginFailed ? this.showError() : null}
-                    {this.state.loginSucces ? this.redirect() : null}
+                    {/*{this.state.loginFailed ? this.showError() : null}*/}
+                    {/*{this.state.loginSucces ? this.redirect() : null}*/}
                     <Button
                         block
                         bsSize="large"
@@ -95,7 +91,7 @@ export default class Login extends Component {
                         type="submit"
                         className={'login-button'}
                     >
-                        Login
+                        Register
                     </Button>
                 </form>
             </div>

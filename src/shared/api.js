@@ -3,8 +3,10 @@ import {request} from "shared/apiRequest";
 
 
 export const login = payload => {
-    console.log(payload)
-    return request(ENDPOINTS.ROOT + ENDPOINTS.LOGIN, {data: payload});
+    return request(ENDPOINTS.ROOT + ENDPOINTS.LOGIN, {body: JSON.stringify(payload)});
+};
+export const register = payload => {
+    return request(ENDPOINTS.ROOT + ENDPOINTS.REGISTER, {body: JSON.stringify(payload)});
 };
 
 
