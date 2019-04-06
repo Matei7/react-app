@@ -159,36 +159,7 @@ class PrimarySearchAppBar extends React.Component {
     };
 
     render() {
-        const {anchorEl, mobileMoreAnchorEl} = this.state;
         const {classes} = this.props;
-        const isMenuOpen = Boolean(anchorEl);
-        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-        const renderMobileMenu = (
-            <Menu
-                anchorEl={mobileMoreAnchorEl}
-                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-                transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                open={isMobileMenuOpen}
-                onClose={this.handleMenuClose}
-            >
-                <MenuItem onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={this.state.lng} color="secondary">
-                            <Language/>
-                        </Badge>
-                    </IconButton>
-                    <p>Language</p>
-                </MenuItem>
-                <MenuItem onClick={this.handleProfileMenuOpen}>
-                    <IconButton color="inherit">
-                        <AccountCircle/>
-                    </IconButton>
-                    <p>Profile</p>
-                </MenuItem>
-            </Menu>
-        );
-
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -242,7 +213,6 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                {renderMobileMenu}
             </div>
         );
     }
