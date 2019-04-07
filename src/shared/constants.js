@@ -2,13 +2,13 @@ const ENDPOINTS = {
 
     ROOT: 'http://localhost/daw',
 
-    MEDICI: '/medici',
+    MEDICI: '/medics',
     LOGIN: '/login',
     REGISTER: '/register',
 
     MEDICI_BY_ID: '/medici?id=',
 
-    SPITALE: '/spitale',
+    SPITALE: '/hospitals',
 
     SPITALE_BY_ID: '/spitale?id=',
 

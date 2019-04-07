@@ -20,7 +20,8 @@
 
 
 img.ui.medium.image {
-    width: 130px !important;
+    width: 100px !important;
+    height: 100px !important;
     margin: 5% auto;
 }
 

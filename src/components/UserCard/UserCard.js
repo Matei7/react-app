@@ -5,6 +5,7 @@ import {withNamespaces} from "react-i18next";
 import {Responsive, Grid, Image, Button, Header, Icon, Segment, Divider} from 'semantic-ui-react';
 
 import {ReactComponent as FancyDivider} from '../../divider.svg';
+import {Link} from "react-router-dom";
 
 class UserCard extends React.Component {
 
@@ -21,7 +22,7 @@ class UserCard extends React.Component {
                     <Grid celled='internally'>
                         <Grid.Row>
                             <Grid.Column width={4} className={'dev-app'}>
-                                <Image src={user.poza} size='medium' circular/>
+                                <Image src={user.poza} size='medium' circular className={'medic-pic'}/>
                             </Grid.Column>
                             <Grid.Column width={9} className={'dev-app'}>
                                 <Header as='h2' icon textAlign='center'>
@@ -30,20 +31,27 @@ class UserCard extends React.Component {
                                     <span
                                         className={'graduation'}>{i18n.t('graduation_year') + ': ' + user.an_absolvire.slice(0, 10)}</span>
                                     <Segment stacked className={'speciality'}>
-                                        {i18n.t('speciality') + ': ' + user.specializare}
+                                        {i18n.t('speciality') + ': ' + user.specializare[0]}
                                     </Segment>
                                 </Header>
                             </Grid.Column>
                             <Grid.Column width={3} className={'dev-app'}>
+                                <Link to={{
+                                    pathname: '/medic/' + user.id,
+                                    state: {
+                                        hospital_id: user.id
+                                    }
+                                }} className={"click_more"}>
                                 <Button content={i18n.t('open_profile')} icon='right arrow' labelPosition='right'
                                         color='red'/>
+                                </Link>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
                     <FancyDivider/>
                 </Responsive>
                 </Segment.Group>
-                <Divider section/>
+                <Divider section className={'divider-medics'}/>
 
             </div>
         );

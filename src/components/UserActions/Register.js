@@ -17,7 +17,7 @@ export default class Register extends Component {
     }
 
     validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        return this.state.email.length > 0 && this.state.password.length > 0 && this.state.name.length > 0;
     }
 
     handleChange = event => {
@@ -65,15 +65,23 @@ export default class Register extends Component {
             <div className="Login" id='login-form'>
 
                 <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="email" bsSize="large">
-                        <FormLabel>Email</FormLabel>
+                    <FormGroup controlId="name" bsSize="large">
+                        <FormLabel>Name</FormLabel>
                         <FormControl
                             autoFocus
-                            type="email"
-                            value={this.state.email}
+                            type="text"
+                            value={this.state.name}
                             onChange={this.handleChange}
                         />
-                    </FormGroup>
+                    </FormGroup><FormGroup controlId="email" bsSize="large">
+                    <FormLabel>Email</FormLabel>
+                    <FormControl
+                        autoFocus
+                        type="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                    />
+                </FormGroup>
                     <FormGroup controlId="password" bsSize="large">
                         <FormLabel>Password</FormLabel>
                         <FormControl

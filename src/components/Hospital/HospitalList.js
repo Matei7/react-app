@@ -13,7 +13,8 @@ class HospitalList extends React.Component {
         getSpitale()
             .then(response => {
                 response.json()
-                    .then(data => {
+                    .then(res => {
+                       var data = res.data;
                         this.setState({
                             data
                         });

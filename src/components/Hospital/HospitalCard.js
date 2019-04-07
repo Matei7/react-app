@@ -5,7 +5,7 @@ import {
     FlippingCardBack,
     FlippingCardFront
 } from 'react-ui-cards';
-import {MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon, } from 'mdbreact';
+import {MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon,} from 'mdbreact';
 import {Link} from 'react-router-dom';
 import {Image} from "semantic-ui-react";
 import i18n from '../../i18n';
@@ -24,7 +24,7 @@ class HospitalCard extends React.Component {
             <FlippingCard>
                 <FlippingCardBack>
                     <MDBCardBody>
-                        <MDBCardTitle>{hospital.nume}</MDBCardTitle>
+                        <MDBCardTitle tag="h5">{hospital.nume}</MDBCardTitle>
                         <MDBCardText>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Maxime quae, dolores dicta. Blanditiis rem amet repellat,
                             dolores nihil quae in mollitia asperiores ut rerum
@@ -32,7 +32,13 @@ class HospitalCard extends React.Component {
                         <hr/>
                         <MDBCardTitle tag="h6">{hospital.locatie}</MDBCardTitle>
                         <hr/>
-                        <MDBCardText><Link to="/medics" className={"click_more"}>{i18n.t('see_more')}</Link></MDBCardText>
+                        <MDBCardText><Link to={{
+                            pathname: '/medics/' + hospital.id,
+                            state: {
+                                hospital_id: hospital.id,
+                                hospital_name: hospital.nume
+                            }
+                        }} className={"click_more"}>{i18n.t('see_more')}</Link></MDBCardText>
                         <hr/>
                         <ul className="list-inline py-2">
                             <li className="list-inline-item">
@@ -63,7 +69,7 @@ class HospitalCard extends React.Component {
                     <MDBCardBody>
                         <MDBCardTitle>{hospital.nume}</MDBCardTitle>
                         <hr/>
-                        <MDBCardTitle tag="h5">{hospital.tip}</MDBCardTitle>
+                        <MDBCardTitle tag="h6">{hospital.tip}</MDBCardTitle>
                         <hr/>
                         <MDBCardText>{i18n.t('hover_see')}</MDBCardText>
                     </MDBCardBody>

@@ -10,8 +10,8 @@ export const register = payload => {
 };
 
 
-export const getMedici = () => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI, {method: 'GET'})
+export const getMedici = id => {
+    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI + '/' + (id || 1), {method: 'GET'});
 };
 
 export const getMediciById = (id) => {
