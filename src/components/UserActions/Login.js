@@ -30,9 +30,6 @@ export default class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const user = {'email': this.state.email, 'password': this.state.password};
-        // var form = new FormData();
-        // form.append('email', this.state.email);
-        // form.append('password', this.state.password);
 
         login(user).then(response => {
             response.json()
@@ -70,7 +67,7 @@ export default class Login extends Component {
             <div className="Login" id='login-form'>
 
                 <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="email" bsSize="large">
+                    <FormGroup controlId="email">
                         <FormLabel>Email</FormLabel>
                         <FormControl
                             autoFocus
@@ -79,7 +76,7 @@ export default class Login extends Component {
                             onChange={this.handleChange}
                         />
                     </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
+                    <FormGroup controlId="password" >
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             value={this.state.password}
@@ -91,7 +88,6 @@ export default class Login extends Component {
                     {this.state.loginSucces ? this.redirect() : null}
                     <Button
                         block
-                        bsSize="large"
                         disabled={!this.validateForm()}
                         type="submit"
                         className={'login-button'}

@@ -11,8 +11,8 @@ export default class Register extends Component {
 
         this.state = {
             email: "",
-            password: ""
-
+            password: "",
+            name: '',
         };
     }
 
@@ -28,7 +28,7 @@ export default class Register extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const user = {'email': this.state.email, 'password': this.state.password};
+        const user = {'email': this.state.email, 'password': this.state.password, 'name': this.state.name};
         register(user).then(response => {
             response.json()
                 .then(responseMessage => {
@@ -65,7 +65,7 @@ export default class Register extends Component {
             <div className="Login" id='login-form'>
 
                 <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="name" bsSize="large">
+                    <FormGroup controlId="name">
                         <FormLabel>Name</FormLabel>
                         <FormControl
                             autoFocus
@@ -73,7 +73,7 @@ export default class Register extends Component {
                             value={this.state.name}
                             onChange={this.handleChange}
                         />
-                    </FormGroup><FormGroup controlId="email" bsSize="large">
+                    </FormGroup><FormGroup controlId="email">
                     <FormLabel>Email</FormLabel>
                     <FormControl
                         autoFocus
@@ -82,7 +82,7 @@ export default class Register extends Component {
                         onChange={this.handleChange}
                     />
                 </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
+                    <FormGroup controlId="password">
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             value={this.state.password}
@@ -90,11 +90,10 @@ export default class Register extends Component {
                             type="password"
                         />
                     </FormGroup>
-                    {/*{this.state.loginFailed ? this.showError() : null}*/}
-                    {/*{this.state.loginSucces ? this.redirect() : null}*/}
+                    {this.state.registerFailed ? this.showError() : null}
+                    {this.state.registerSuccess ? this.redirect() : null}
                     <Button
                         block
-                        bsSize="large"
                         disabled={!this.validateForm()}
                         type="submit"
                         className={'login-button'}

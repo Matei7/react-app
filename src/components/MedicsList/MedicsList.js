@@ -1,12 +1,10 @@
-import './UserList.css';
+import './MedicsList.css';
 import React from 'react';
 import {Container} from 'reactstrap';
 import {getMedici} from 'shared/api';
-import UserCard from 'components/UserCard/UserCard'
-import LocalHospital from "@material-ui/core/SvgIcon/SvgIcon";
-import Typography from "@material-ui/core/Typography";
+import UserCard from 'components/MedicCard/MedicCard'
 
-class UserList extends React.Component {
+class MedicsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -39,7 +37,6 @@ class UserList extends React.Component {
         const {data} = this.state;
         return (
             <Container>
-                <div className={"header-image"}></div>
                 <div className={'hospital_title'}>
                     <span className={'hospital_title_text'} >    {this.state.hospital_name}  </span>
                 </div>
@@ -56,4 +53,4 @@ class UserList extends React.Component {
     }
 }
 
-export default UserList;
+export default MedicsList;

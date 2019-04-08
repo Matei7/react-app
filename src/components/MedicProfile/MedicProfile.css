@@ -1,0 +1,23 @@
+div .chip_specializare {
+    margin: 5px;
+    background: #db2828 !important;
+}
+
+.MuiFormControl-marginNormal-162 {
+    display: flex !important;
+    margin: 25px auto !important;
+}
+
+fieldset {
+    border-color: #db2828 !important;
+}
+
+.rating_chip {
+    color: #db2828 !important;
+    border: 1px solid #db2828 !important;
+    font-size:16px !important;
+}
+
+.rating_chip svg {
+    fill: #db2828 !important;
+}

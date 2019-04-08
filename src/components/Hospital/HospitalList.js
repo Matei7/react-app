@@ -26,7 +26,6 @@ class HospitalList extends React.Component {
         const {data} = this.state;
         return (
             <Container>
-                <div className={"header-image"}></div>
                 <Row>
                     {data ? data.map(element => {
                         return (

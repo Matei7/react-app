@@ -11,17 +11,20 @@ class Footer extends React.Component {
 
                 <ul className="list-inline py-2">
                     <li className="list-inline-item">
-                        <a href="https://www.facebook.com/Mateei7" target="_blank" className="p-2 fa-lg fb-ic">
+                        <a href="https://www.facebook.com/Mateei7" target="_blank" rel="noopener noreferrer"
+                           className="p-2 fa-lg fb-ic">
                             <MDBIcon icon="facebook" brand/>
                         </a>
                     </li>
                     <li className="list-inline-item">
-                        <a href="https://github.com/Matei7" target="_blank"  className="p-2 fa-lg git-ic">
+                        <a href="https://github.com/Matei7" target="_blank" rel="noopener noreferrer"
+                           className="p-2 fa-lg git-ic">
                             <MDBIcon icon="github" brand/>
                         </a>
                     </li>
                     <li className="list-inline-item">
-                        <a href="https://www.linkedin.com/in/vladmatei7/" target="_blank"  className="p-2 fa-lg li-ic">
+                        <a href="https://www.linkedin.com/in/vladmatei7/" target="_blank" rel="noopener noreferrer"
+                           className="p-2 fa-lg li-ic">
                             <MDBIcon icon="linkedin" brand/>
                         </a>
                     </li>

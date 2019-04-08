@@ -1,4 +1,4 @@
-import './UserCard.css';
+import './MedicCard.css';
 import React from 'react';
 import i18n from '../../i18n';
 import {withNamespaces} from "react-i18next";
@@ -7,7 +7,7 @@ import {Responsive, Grid, Image, Button, Header, Icon, Segment, Divider} from 's
 import {ReactComponent as FancyDivider} from '../../divider.svg';
 import {Link} from "react-router-dom";
 
-class UserCard extends React.Component {
+class MedicCard extends React.Component {
 
     constructor(props) {
         super(props);
@@ -39,7 +39,7 @@ class UserCard extends React.Component {
                                 <Link to={{
                                     pathname: '/medic/' + user.id,
                                     state: {
-                                        hospital_id: user.id
+                                        medic_id: user.id
                                     }
                                 }} className={"click_more"}>
                                 <Button content={i18n.t('open_profile')} icon='right arrow' labelPosition='right'
@@ -58,4 +58,4 @@ class UserCard extends React.Component {
     }
 }
 
-export default withNamespaces()(UserCard);
+export default withNamespaces()(MedicCard);

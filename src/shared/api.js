@@ -11,11 +11,11 @@ export const register = payload => {
 
 
 export const getMedici = id => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI + '/' + (id || 1), {method: 'GET'});
+    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI + (id || 1), {method: 'GET'});
 };
 
-export const getMediciById = (id) => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI_BY_ID + id, {method: 'GET'})
+export const getMedicById = id => {
+    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI_BY_ID  + id, {method: 'GET'})
 };
 
 export const postMedici = (payload) => {

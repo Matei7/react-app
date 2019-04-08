@@ -3,11 +3,13 @@ import './App.css';
 import Header from 'components/Header/Header'
 import {Route, Switch} from "react-router-dom";
 import HospitalList from "./components/Hospital/HospitalList";
-import UserList from "./components/UserList/UserList";
+import MedicsList from "./components/MedicsList/MedicsList";
+import MedicProfile from "./components/MedicProfile/MedicProfile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/UserActions/Login";
 import Register from "./components/UserActions/Register";
+import {Container} from "reactstrap";
 
 
 class App extends Component {
@@ -28,13 +30,14 @@ class App extends Component {
                     <Header logged={this.state.logged}/>
                     <Sidebar/>
                 </header>
-
+                <div className={"header-image"}></div>
                 <Switch>
                     <Route exact path="/" component={HospitalList}/>
-                    <Route path="/medics" component={UserList}/>
+                    <Route path="/medics" component={MedicsList}/>
                     <Route path="/hospital" component={HospitalList}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
+                    <Route path="/medic" component={MedicProfile}/>
                     {/* when none of the above match, <NoMatch> will be rendered */}
                     <Route component={HospitalList}/>
                 </Switch>

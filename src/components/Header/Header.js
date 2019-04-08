@@ -192,11 +192,11 @@ class PrimarySearchAppBar extends React.Component {
                                 </DropdownToggle>
                                 <DropdownMenu>
 
-                                    <DropdownItem>{this.props.logged ? <Link to="login">MyProfile</Link> :
-                                        <Link to="login">Login</Link>}</DropdownItem>
+                                    <DropdownItem>{this.props.logged ? <Link to="/login">MyProfile</Link> :
+                                        <Link to="/login">Login</Link>}</DropdownItem>
                                     <DropdownItem divider/>
-                                    <DropdownItem>{this.props.logged ? <Link to="login">Sign Out</Link> :
-                                        <Link to="register">Register</Link>}</DropdownItem>
+                                    <DropdownItem>{this.props.logged ? <Link to="/login">Sign Out</Link> :
+                                        <Link to="/register">Register</Link>}</DropdownItem>
 
 
                                 </DropdownMenu>
