@@ -24,7 +24,7 @@
 .hospital_title span:after {
     content: '';
     position: absolute;
-    border-width: 32px; /* makes a nice, big 64px square */
+    border-width: 26px; /* makes a nice, big 64px square */
     border-style: solid;
     border-color: transparent;
     height: 0;
@@ -38,7 +38,6 @@
 
 .hospital_title .hospital_title_text:before {
     left: -4px;
-    top: -10px;
     border-top-color: #fff;
     border-left-color: #fff;
 }

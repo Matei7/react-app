@@ -35,6 +35,10 @@ export const postSpital = (payload) => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.SPITALE, {body: JSON.stringify(payload)})
 };
 
+export const getProfile = id => {
+    return request(ENDPOINTS.ROOT + ENDPOINTS.PROFILE+ id, {method: 'GET'})
+};
+
 
 export const getPosts = () => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.POST, {method: 'GET'})

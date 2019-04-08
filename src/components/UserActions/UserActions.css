@@ -8,8 +8,14 @@
         max-width: 320px;
     }
 
-    .login-button{
+    .login-button {
         background: #db2828 !important;
         border: none !important;
     }
+}
+
+
+.profile_input {
+    display: flex !important;
+    margin: 20px !important;
 }

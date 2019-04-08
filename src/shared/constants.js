@@ -12,7 +12,8 @@ const ENDPOINTS = {
 
     SPITALE_BY_ID: '/spitale?id=',
 
-    COMMENT: '/comment'
+    COMMENT: '/comment',
+    PROFILE: '/profile/'
 };
 
 export {

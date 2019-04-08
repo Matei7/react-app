@@ -36,7 +36,7 @@ export default class Login extends Component {
                 .then(responseMessage => {
                     if (responseMessage.success) {
                         localStorage.setItem('isLogged', true);
-                        localStorage.setItem('userDetails', responseMessage.data);
+                        localStorage.setItem('userDetails', JSON.stringify(responseMessage.data));
                         this.setState({
                             loginSucces: true,
                         });
@@ -76,7 +76,7 @@ export default class Login extends Component {
                             onChange={this.handleChange}
                         />
                     </FormGroup>
-                    <FormGroup controlId="password" >
+                    <FormGroup controlId="password">
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             value={this.state.password}

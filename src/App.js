@@ -8,8 +8,9 @@ import MedicProfile from "./components/MedicProfile/MedicProfile";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/UserActions/Login";
+import Profile from "./components/UserActions/Profile";
 import Register from "./components/UserActions/Register";
-import {Container} from "reactstrap";
+
 
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/medic" component={MedicProfile}/>
+                    <Route path="/profile" component={Profile}/>
                     {/* when none of the above match, <NoMatch> will be rendered */}
                     <Route component={HospitalList}/>
                 </Switch>
