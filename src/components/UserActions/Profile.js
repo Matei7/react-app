@@ -9,8 +9,29 @@ import {
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
 import LocalHospital from '@material-ui/icons/LocalHospital';
+import DoneIcon from '@material-ui/icons/Done';
 
 import {getProfile} from 'shared/api'
+
+
+const afectiuni = [
+    'cancer types',
+    'cutaneous conditions',
+    'endocrine diseases',
+    'eye diseases and disorders',
+    'intestinal diseases',
+    'infectious diseases',
+    'human disease case fatality rates',
+    'communication disorders',
+    'genetic disorders',
+    'neurological disorders',
+    'voice disorders',
+    'vulvovaginal disorders',
+    'liver disorders',
+    'heart disorders',
+    'eating disorders',
+    'mood disorders',
+    'personality disorders'];
 
 class Profile extends React.Component {
     constructor(props) {
@@ -22,27 +43,86 @@ class Profile extends React.Component {
         let user_data = JSON.parse(localStorage.getItem('userDetails'));
         getProfile(user_data.id)
             .then(response => {
-                response.json()
-                    .then(res => {
-                        const data = res.data;
-                        this.setState({
-                            data: data,
+                    response.json()
+                        .then(res => {
+
+                            let user_afectiuni = [];
+                            res.data.afectiuni.forEach((e) => {
+
+                                e = e.replace('\n', '');
+                                e = e.substr(1, e.length);
+
+                                user_afectiuni.push(e);
+                            });
+                            console.log(user_afectiuni);
+                            console.log(afectiuni);
+                            let difference = [];
+                            user_afectiuni.map(e => {
+
+                                // afectiuni.includes(e.toString().trim()) ? difference.push(e): null;
+
+                                difference.push(e.toString().trim());
+
+                            });
+                            res.data.afectiuni = user_afectiuni;
+
+                            const data = res.data;
+                            this.setState({
+                                data: data,
+                                not_selected: afectiuni.filter(x => !difference.includes(x))
+                            });
                         });
-                    });
-            });
+                }
+            )
+        ;
+    };
+
+    handleDelete = e => () => {
+        let arr = this.state.data.afectiuni.filter((elem, index) => {
+            return elem !== e;
+        });
+        let arr2 = this.state.not_selected;
+        arr2.push(e);
+
+        this.setState({
+            data: {
+                ...this.state.data,
+                afectiuni: arr
+            },
+            not_selected: arr2,
+        })
+    };
+    handleSelect = e => () => {
+        let arr = this.state.not_selected.filter((elem, index) => {
+            return elem !== e;
+        });
+        let arr2 = this.state.data.afectiuni;
+        arr2.push(e);
+        this.setState({
+            not_selected: arr,
+            data: {
+                ...this.state.data,
+                afectiuni: arr2
+            }
+        })
     };
 
 
-    validateForm() {
-        console.log(localStorage.getItem(this.state.rating));
-        const isLogged = localStorage.getItem('isLogged') || false;
-        return isLogged;
-    }
-
+    chipRenderOther = label => {
+        return (<Chip
+            icon={<LocalHospital/>}
+            label={label}
+            onDelete={this.handleSelect(label)}
+            className={'chip_specializare'}
+            color="primary"
+            deleteIcon={<DoneIcon/>}
+        />);
+    };
     chipRender = label => {
         return (<Chip
             icon={<LocalHospital/>}
             label={label}
+            onDelete={this.handleDelete(label)}
             className={'chip_specializare'}
             color="primary"
         />);
@@ -119,6 +199,14 @@ class Profile extends React.Component {
                         <Header as='h4' style={{fontSize: '1.75em'}}>
                             Afectiuni
                         </Header>
+
+                        {this.state.not_selected.map(e => {
+                            return (this.chipRenderOther(e));
+                        })}
+                        <hr/>
+                        <hr/>
+                        <hr/>
+                        <hr/>
                         {user_data.afectiuni.map(e => {
                             return (this.chipRender(e));
                         })}

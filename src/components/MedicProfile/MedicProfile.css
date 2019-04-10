@@ -21,3 +21,8 @@ fieldset {
 .rating_chip svg {
     fill: #db2828 !important;
 }
+
+.profile_input {
+    display: flex !important;
+    margin: 20px !important;
+}

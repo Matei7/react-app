@@ -24,8 +24,8 @@ const classes = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        display:'flex',
-        marginBlock:' margin: 25px auto !important'
+        display: 'flex',
+        marginBlock: ' margin: 25px auto !important'
     },
     dense: {
         marginTop: 16,
@@ -45,8 +45,8 @@ class MedicProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rating:'',
-            comment:'',
+            rating: '',
+            comment: '',
         };
     }
 
@@ -70,8 +70,9 @@ class MedicProfile extends React.Component {
     validateForm() {
         console.log(localStorage.getItem(this.state.rating));
         const isLogged = localStorage.getItem('isLogged') || false;
-        return   isLogged;
+        return isLogged;
     }
+
 
     chipRender = label => {
         return (<Chip
@@ -148,7 +149,7 @@ class MedicProfile extends React.Component {
                                 <TextField
                                     id="rating"
                                     label="Rating"
-                                    className={classes.textField}
+                                    className={'profile_input'}
                                     placeholder="0"
                                     margin="normal"
                                     variant="outlined"
@@ -163,7 +164,7 @@ class MedicProfile extends React.Component {
                                     multiline
                                     rows="4"
                                     placeholder="No Comment"
-                                    className={classes.textField}
+                                    className={'profile_input'}
                                     value={this.state.comment}
                                     margin="normal"
                                     variant="outlined"
