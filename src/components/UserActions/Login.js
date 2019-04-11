@@ -4,6 +4,7 @@ import "./UserActions.css";
 import {login} from 'shared/api';
 import {Alert} from "reactstrap";
 import {Redirect} from "react-router-dom";
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default class Login extends Component {
     constructor(props) {
@@ -86,14 +87,25 @@ export default class Login extends Component {
                     </FormGroup>
                     {this.state.loginFailed ? this.showError() : null}
                     {this.state.loginSucces ? this.redirect() : null}
-                    <Button
-                        block
-                        disabled={!this.validateForm()}
-                        type="submit"
-                        className={'login-button'}
-                    >
-                        Login
-                    </Button>
+
+
+                    {!this.validateForm() ?
+                        <Tooltip disableFocusListener disableTouchListener title="Must Complete All the Fields">
+                            <Button
+                                block
+                                className={'login-button'}
+                            >
+                                Login
+                            </Button>
+                        </Tooltip> : <Button
+                            block
+                            type="submit"
+                            className={'login-button'}
+                        >
+                            Login
+                        </Button>}
+
+
                 </form>
             </div>
         );

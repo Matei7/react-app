@@ -15,7 +15,7 @@ fieldset {
 .rating_chip {
     color: #db2828 !important;
     border: 1px solid #db2828 !important;
-    font-size:16px !important;
+    font-size: 16px !important;
 }
 
 .rating_chip svg {
@@ -25,4 +25,25 @@ fieldset {
 .profile_input {
     display: flex !important;
     margin: 20px !important;
+}
+
+.previous_comments {
+    margin: 20px auto;
+    padding: 5px;
+}
+
+.previous_comments > div{
+
+    display: flex !important;
+    margin: 20px !important;
+
+}
+
+.previous_comments label {
+    color: rgba(0, 0, 0, 0.8) !important;
+    font-weight: bold;
+}
+
+.previous_comments input {
+    color: rgba(0, 0, 0, 0.8) !important;
 }

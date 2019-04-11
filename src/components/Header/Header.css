@@ -47,3 +47,13 @@ p {
 .dropdown-menu{
     transform: translate3d(-55px, 40px, 0px) !important;
 }
+
+.logout{
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.logout:hover{
+    text-decoration: underline;
+}

@@ -60,7 +60,8 @@ class MedicProfile extends React.Component {
                         this.setState({
                             data: data,
                             medic_id: data.id,
-                            current_rating: data.rating
+                            current_rating: data.rating,
+                            comments: data.comments,
                         });
                     });
             });
@@ -84,7 +85,9 @@ class MedicProfile extends React.Component {
     };
 
     handleChange = event => {
-
+        this.setState({
+            [event.target.id]: event.target.value
+        })
     };
 
 
@@ -96,7 +99,12 @@ class MedicProfile extends React.Component {
             response.json()
                 .then(responseMessage => {
                     if (responseMessage.success) {
-
+                        this.setState({
+                            current_rating: responseMessage.data.rating,
+                            comments: responseMessage.data.comments,
+                            comment: '',
+                            rating: 0,
+                        })
                     }
 
                 })
@@ -106,6 +114,7 @@ class MedicProfile extends React.Component {
 
     displayProfile = () => {
         const user_data = this.state.data;
+        console.log();
         const labelRating = 'Current Rating: ' + this.state.current_rating;
         return (<Segment style={{padding: '8em 0em'}} vertical>
             <Grid container stackable verticalAlign='middle'>
@@ -178,6 +187,21 @@ class MedicProfile extends React.Component {
 
                             </form>
                         </div>
+                    </Grid.Column>
+                    <Grid.Column floated='right' width={6}>
+                        <div className={'previous_comments'}>
+                            <h3>Previous Comments</h3>
+                            {this.state.comments.map(e => {
+                                return <TextField
+                                    disabled
+                                    id="outlined-disabled"
+                                    label={'Rating: ' + e.rating}
+                                    defaultValue={e.comment}
+                                    className={classes.textField}
+                                    margin="normal"
+                                    variant="outlined"
+                                />;
+                            })}</div>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

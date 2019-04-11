@@ -18,7 +18,7 @@ import i18n from '../../i18n';
 import {withCookies, Cookies} from 'react-cookie';
 import {instanceOf} from 'prop-types';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 const styles = theme => ({
     root: {
@@ -138,7 +138,6 @@ class PrimarySearchAppBar extends React.Component {
         });
     };
 
-
     handleProfileMenuOpen = event => {
         this.setState({anchorEl: event.currentTarget});
     };
@@ -156,10 +155,23 @@ class PrimarySearchAppBar extends React.Component {
         this.setState({mobileMoreAnchorEl: null});
     };
 
+    logOut = () => {
+        localStorage.removeItem('isLogged');
+        localStorage.removeItem('userDetails');
+        this.setState({
+            logout: true
+        })
+    };
+
+    handleRedirect = () => {
+        return (<Redirect to='/homepage'/>);
+    };
+
     render() {
         const {classes} = this.props;
         return (
             <div className={classes.root}>
+                {this.state.logout ? this.handleRedirect() : null}
                 <AppBar position="static">
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -192,13 +204,12 @@ class PrimarySearchAppBar extends React.Component {
                                 </DropdownToggle>
                                 <DropdownMenu>
 
-                                    <DropdownItem>{this.props.logged ? <Link to="/profile">MyProfile</Link> :
+                                    <DropdownItem>{this.props.logged ? <Link to="/profile">My Profile</Link> :
                                         <Link to="/login">Login</Link>}</DropdownItem>
                                     <DropdownItem divider/>
-                                    <DropdownItem>{this.props.logged ? <Link to="/logout">Sign Out</Link> :
+                                    <DropdownItem>{this.props.logged ?
+                                        <span className={'logout'} onClick={this.logOut}>Log Out</span> :
                                         <Link to="/register">Register</Link>}</DropdownItem>
-
-
                                 </DropdownMenu>
                             </Dropdown>
 

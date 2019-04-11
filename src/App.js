@@ -12,7 +12,6 @@ import Profile from "./components/UserActions/Profile";
 import Register from "./components/UserActions/Register";
 
 
-
 class App extends Component {
 
     constructor(props) {
@@ -23,10 +22,20 @@ class App extends Component {
         };
     }
 
+    checkLogged = () => {
+        const current_value = localStorage.getItem('isLogged') || false;
+
+        if (this.state.logged !== current_value) {
+            this.setState({
+                logged: current_value
+            })
+        }
+    };
 
     render() {
         return (
             <div className="App">
+                {this.checkLogged()}
                 <header className="App-header">
                     <Header logged={this.state.logged}/>
                     <Sidebar/>

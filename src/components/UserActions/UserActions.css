@@ -11,6 +11,7 @@
     .login-button {
         background: #db2828 !important;
         border: none !important;
+        pointer-events: all !important;
     }
 }
 
