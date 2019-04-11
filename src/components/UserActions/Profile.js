@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import LocalHospital from '@material-ui/icons/LocalHospital';
 import DoneIcon from '@material-ui/icons/Done';
 
-import {getProfile} from 'shared/api'
+import {getProfile, updateProfile} from 'shared/api'
 import {Button} from "react-bootstrap";
 
 
@@ -137,7 +137,10 @@ class Profile extends React.Component {
         FR.addEventListener("load", function (e) {
 
             self.setState({
-                file_source: e.target.result
+                data: {
+                    ...self.state.data,
+                    poza: e.target.result
+                }
             });
         });
 
@@ -155,13 +158,17 @@ class Profile extends React.Component {
         })
     };
     handleUpdate = () => {
-
+        const data = {'user_data': this.state.data, 'poza': this.state.data.poza};
+        updateProfile(data).then(response => {
+            response.json()
+                .then(res => {
+                })
+        });
     };
 
 
     displayProfile = () => {
         const user_data = this.state.data;
-        user_data.poza = this.state.file_source;
 
         return (<Segment style={{padding: '8em 0em'}} vertical>
             <Grid container stackable verticalAlign='middle'>
@@ -225,7 +232,7 @@ class Profile extends React.Component {
                         </div>
                         <Button
                             block
-                            onClick={this.handleUpdate()}
+                            onClick={this.handleUpdate}
                             type="submit"
                             className={'update-button'}
                             disabled={!this.validateForm()}

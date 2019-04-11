@@ -9,6 +9,10 @@ export const register = payload => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.REGISTER, {body: JSON.stringify(payload)});
 };
 
+export const updateProfile = payload => {
+    return request(ENDPOINTS.ROOT + ENDPOINTS.UPDATE_PROFILE, {body: JSON.stringify(payload)});
+};
+
 
 export const getMedici = id => {
     return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI + (id || 1), {method: 'GET'});

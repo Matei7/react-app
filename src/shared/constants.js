@@ -13,7 +13,8 @@ const ENDPOINTS = {
     SPITALE_BY_ID: '/spitale?id=',
 
     COMMENT: '/comment',
-    PROFILE: '/profile/'
+    PROFILE: '/profile/',
+    UPDATE_PROFILE: '/update_profile'
 };
 
 export {
