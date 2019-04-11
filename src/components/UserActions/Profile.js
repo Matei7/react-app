@@ -12,6 +12,7 @@ import LocalHospital from '@material-ui/icons/LocalHospital';
 import DoneIcon from '@material-ui/icons/Done';
 
 import {getProfile} from 'shared/api'
+import {Button} from "react-bootstrap";
 
 
 const afectiuni = [
@@ -48,21 +49,16 @@ class Profile extends React.Component {
 
                             let user_afectiuni = [];
                             res.data.afectiuni.forEach((e) => {
-
                                 e = e.replace('\n', '');
-                                e = e.substr(1, e.length);
+                                if (e[0] === '') {
+                                    e = e.substr(1, e.length);
+                                }
 
                                 user_afectiuni.push(e);
                             });
-                            console.log(user_afectiuni);
-                            console.log(afectiuni);
                             let difference = [];
                             user_afectiuni.map(e => {
-
-                                // afectiuni.includes(e.toString().trim()) ? difference.push(e): null;
-
                                 difference.push(e.toString().trim());
-
                             });
                             res.data.afectiuni = user_afectiuni;
 
@@ -96,8 +92,10 @@ class Profile extends React.Component {
         let arr = this.state.not_selected.filter((elem, index) => {
             return elem !== e;
         });
+
         let arr2 = this.state.data.afectiuni;
         arr2.push(e);
+
         this.setState({
             not_selected: arr,
             data: {
@@ -107,6 +105,10 @@ class Profile extends React.Component {
         })
     };
 
+
+    validateForm() {
+        return this.state.data.email.length > 0 && this.state.data.password.length > 0;
+    }
 
     chipRenderOther = label => {
         return (<Chip
@@ -143,7 +145,16 @@ class Profile extends React.Component {
     };
 
 
-    handleFieldChange = (e) => {
+    handleFieldChange = (event) => {
+
+        this.setState({
+            data: {
+                ...this.state.data,
+                [event.target.id]: event.target.value
+            }
+        })
+    };
+    handleUpdate = () => {
 
     };
 
@@ -156,12 +167,12 @@ class Profile extends React.Component {
             <Grid container stackable verticalAlign='middle'>
                 <Grid.Row>
                     <Grid.Column width={8}>
-                        <div className={'hospital_title'}>
+                        <div className={'hospital_title user_name'}>
                             <span className={'hospital_title_text'}>    {this.state.data.nume}  </span>
                         </div>
 
                         <TextField
-                            id="outlined-name"
+                            id="nume"
                             label="Name"
                             className={'profile_input'}
                             value={this.state.data.nume}
@@ -203,13 +214,24 @@ class Profile extends React.Component {
                         {this.state.not_selected.map(e => {
                             return (this.chipRenderOther(e));
                         })}
+                        <br/>
                         <hr/>
-                        <hr/>
-                        <hr/>
-                        <hr/>
-                        {user_data.afectiuni.map(e => {
-                            return (this.chipRender(e));
-                        })}
+                        <br/>
+                        <div className={'selected_issues'}>
+                            {user_data.afectiuni.map(e => {
+                                return (this.chipRender(e));
+                            })}
+
+                        </div>
+                        <Button
+                            block
+                            onClick={this.handleUpdate()}
+                            type="submit"
+                            className={'update-button'}
+                            disabled={!this.validateForm()}
+                        >
+                            Update Profile
+                        </Button>
 
                     </Grid.Column>
                     <Grid.Column floated='right' width={6}>

@@ -84,10 +84,7 @@ class MedicProfile extends React.Component {
     };
 
     handleChange = event => {
-        console.log([event.target.id]);
-        this.setState({
-            [event.target.id]: event.target.value
-        });
+
     };
 
 

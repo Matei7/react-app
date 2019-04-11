@@ -14,8 +14,26 @@
     }
 }
 
+.user_name{
+    text-overflow: ellipsis;
+    width: 750px;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 .profile_input {
     display: flex !important;
     margin: 20px !important;
+}
+
+.update-button {
+    margin: 50px auto !important;
+    background: #db2828 !important;
+    border: none!important;
+}
+
+.selected_issues{
+    box-shadow: inset 6px 6px 25px -6px rgba(0,0,0,0.4);
+    border-radius: 25px;
+    padding: 10px;
 }
