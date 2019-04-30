@@ -1,0 +1,3 @@
+.table_input:before{
+    content: none !important;
+}

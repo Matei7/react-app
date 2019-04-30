@@ -14,7 +14,9 @@ import Score from '@material-ui/icons/Score';
 import {getMedicById, postComment} from 'shared/api'
 import './MedicProfile.css';
 import {Button} from "react-bootstrap";
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {deleteComment} from "../../shared/api";
 
 const classes = theme => ({
     container: {
@@ -56,13 +58,15 @@ class MedicProfile extends React.Component {
             .then(response => {
                 response.json()
                     .then(res => {
-                        const data = res.data;
-                        this.setState({
-                            data: data,
-                            medic_id: data.id,
-                            current_rating: data.rating,
-                            comments: data.comments,
-                        });
+                        if (res.success) {
+                            const data = res.data;
+                            this.setState({
+                                data: data,
+                                medic_id: data.id,
+                                current_rating: data.rating,
+                                comments: data.comments,
+                            });
+                        }
                     });
             });
     };
@@ -111,10 +115,29 @@ class MedicProfile extends React.Component {
         });
     };
 
+    handleDelete = id => {
+        let arr = this.state.data.comments.filter((elem, index) => {
+            return elem.id !== id;
+        });
+        deleteComment({'id': id}).then(response => {
+            response.json()
+                .then(responseMessage => {
+                    if (responseMessage.success || responseMessage.success === 'true') {
+                        this.setState({
+                            data: {
+                                ...this.state.data,
+                                comments: arr
+                            }
+                        })
+                    }
+                })
+        });
+    };
+
 
     displayProfile = () => {
+
         const user_data = this.state.data;
-        console.log();
         const labelRating = 'Current Rating: ' + this.state.current_rating;
         return (<Segment style={{padding: '8em 0em'}} vertical>
             <Grid container stackable verticalAlign='middle'>
@@ -191,16 +214,26 @@ class MedicProfile extends React.Component {
                     <Grid.Column floated='right' width={6}>
                         <div className={'previous_comments'}>
                             <h3>Previous Comments</h3>
-                            {this.state.comments.map(e => {
-                                return <TextField
-                                    disabled
-                                    id="outlined-disabled"
-                                    label={'Rating: ' + e.rating}
-                                    defaultValue={e.comment}
-                                    className={classes.textField}
-                                    margin="normal"
-                                    variant="outlined"
-                                />;
+                            {this.state.data.comments.map(e => {
+                                return <div key={e.id} className={'medic_comment'} id={'medic_comment' + e.id}>
+                                    <TextField
+                                        disabled
+                                        id="outlined-disabled"
+                                        label={'Rating: ' + e.rating}
+                                        defaultValue={e.comment}
+                                        className={classes.textField}
+                                        margin="normal"
+                                        variant="outlined"
+                                    />
+                                    {
+                                        JSON.parse(localStorage.getItem('userDetails')).type === 'admin' ?
+                                            <IconButton aria-label="Delete" className={'delete_icon'} onClick={() => {
+                                                this.handleDelete(e.id)
+                                            }}>
+                                                <DeleteIcon fontSize="small"/>
+                                            </IconButton> : ''
+                                    }
+                                </div>
                             })}</div>
                     </Grid.Column>
                 </Grid.Row>
@@ -210,9 +243,8 @@ class MedicProfile extends React.Component {
 
     render() {
         return (
-
             <Container>
-                {this.state.data ? this.displayProfile() : 'No data'}</Container>);
+                {this.state.medic_id ? this.displayProfile() : 'No data'}</Container>);
     }
 }
 

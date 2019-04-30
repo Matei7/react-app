@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Header from 'components/Header/Header'
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 import HospitalList from "./components/Hospital/HospitalList";
 import MedicsList from "./components/MedicsList/MedicsList";
 import MedicProfile from "./components/MedicProfile/MedicProfile";
@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/UserActions/Login";
 import Profile from "./components/UserActions/Profile";
 import Register from "./components/UserActions/Register";
+import AdminPanel from "./components/Admin/AdminPanel";
 
 
 class App extends Component {
@@ -33,6 +34,13 @@ class App extends Component {
     };
 
     render() {
+        const PrivateRoute = ({component: Component, ...rest}) => (
+            <Route {...rest} render={(props) => (
+                JSON.parse(localStorage.getItem('userDetails')).type === 'admin'
+                    ? <Component {...props} />
+                    : <Redirect to='/login'/>
+            )}/>
+        )
         return (
             <div className="App">
                 {this.checkLogged()}
@@ -42,6 +50,9 @@ class App extends Component {
                 </header>
                 <div className={"header-image"}></div>
                 <Switch>
+
+
+                    <PrivateRoute exact path="/admin" component={AdminPanel}/>
                     <Route exact path="/" component={HospitalList}/>
                     <Route path="/medics" component={MedicsList}/>
                     <Route path="/hospital" component={HospitalList}/>

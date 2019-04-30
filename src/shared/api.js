@@ -19,7 +19,16 @@ export const getMedici = id => {
 };
 
 export const getMedicById = id => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI_BY_ID  + id, {method: 'GET'})
+    return request(ENDPOINTS.ROOT + ENDPOINTS.MEDICI_BY_ID + id, {method: 'GET'})
+};
+
+
+export const getMedics = () => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.MEDICS, {method: 'GET'})
+};
+
+export const getUsers = () => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.USERS, {method: 'GET'})
 };
 
 export const postMedici = (payload) => {
@@ -40,7 +49,7 @@ export const postSpital = (payload) => {
 };
 
 export const getProfile = id => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.PROFILE+ id, {method: 'GET'})
+    return request(ENDPOINTS.ROOT + ENDPOINTS.PROFILE + id, {method: 'GET'})
 };
 
 
@@ -57,7 +66,28 @@ export const postComment = (payload) => {
 };
 
 export const deleteComment = (payload) => {
-    return request(ENDPOINTS.ROOT + ENDPOINTS.COMMENT, {method: 'DELETE', body: JSON.stringify(payload)})
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.COMMENT, {method: 'DELETE', body: JSON.stringify(payload)})
+};
+
+export const deleteUser = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.USER, {method: 'DELETE', body: JSON.stringify(payload)})
+};
+export const deleteMedic = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.MEDIC, {method: 'DELETE', body: JSON.stringify(payload)})
+};
+export const deleteHospital = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.HOSPITAL, {method: 'DELETE', body: JSON.stringify(payload)})
+};
+
+
+export const editUser = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.USER, {method: 'PUT', body: JSON.stringify(payload)})
+};
+export const editMedic = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.MEDIC, {method: 'PUT', body: JSON.stringify(payload)})
+};
+export const editHospital = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.HOSPITAL, {method: 'PUT', body: JSON.stringify(payload)})
 };
 
 

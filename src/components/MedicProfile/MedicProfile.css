@@ -5,7 +5,10 @@ div .chip_specializare {
 
 .MuiFormControl-marginNormal-162 {
     display: flex !important;
-    margin: 25px auto !important;
+}
+
+.MuiFormControl-marginNormal-162 div {
+    width: 250px;
 }
 
 fieldset {
@@ -32,11 +35,8 @@ fieldset {
     padding: 5px;
 }
 
-.previous_comments > div{
-
+.previous_comments > div {
     display: flex !important;
-    margin: 20px !important;
-
 }
 
 .previous_comments label {
@@ -46,4 +46,13 @@ fieldset {
 
 .previous_comments input {
     color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.delete_icon {
+    padding: 0 !important;
+    width: 25px !important;
+}
+
+.delete_icon:focus {
+    outline: none !important;
 }
