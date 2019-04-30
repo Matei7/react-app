@@ -89,6 +89,12 @@ export const editMedic = (payload) => {
 export const editHospital = (payload) => {
     return request(ENDPOINTS.ROOT_PY + ENDPOINTS.HOSPITAL, {method: 'PUT', body: JSON.stringify(payload)})
 };
+export const addMedic = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.MEDIC, {method: 'POST', body: JSON.stringify(payload)})
+};
+export const addHospital = (payload) => {
+    return request(ENDPOINTS.ROOT_PY + ENDPOINTS.HOSPITAL, {method: 'POST', body: JSON.stringify(payload)})
+};
 
 
 export const sharePost = (payload) => {

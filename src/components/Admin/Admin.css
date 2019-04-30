@@ -1,3 +1,12 @@
-.table_input:before{
+.table_input:before {
     content: none !important;
+}
+
+.title_cat {
+    display: flex;
+    justify-content: center;
+}
+
+.title_cat button {
+    color: #db2828;
 }

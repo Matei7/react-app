@@ -6,13 +6,39 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Container} from "semantic-ui-react";
-import {getSpitale, getMedics, getUsers, deleteUser, deleteHospital, deleteMedic, editHospital} from 'shared/api';
+import {
+    getSpitale,
+    getMedics,
+    getUsers,
+    deleteUser,
+    deleteHospital,
+    deleteMedic,
+    editHospital,
+    editMedic,
+    addMedic,
+    addHospital,
+} from 'shared/api';
+import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 import Input from '@material-ui/core/Input';
 import './Admin.css';
-import {editMedic} from "../../shared/api";
+import {withStyles} from '@material-ui/core/styles';
+import TextField from "@material-ui/core/TextField";
+import {Button} from "react-bootstrap";
+
+function getModalStyle() {
+    const top = 50;
+    const left = 50;
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
 
 const styles = theme => ({
     root: {
@@ -23,15 +49,35 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
+    icon: {
+        margin: theme.spacing.unit * 2,
+    },
+    iconHover: {
+        margin: theme.spacing.unit * 2,
+        '&:hover': {
+            // color: #fff,
+        },
+    },
+    paper: {
+        position: 'absolute',
+        width: theme.spacing.unit * 50,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing.unit * 4,
+        outline: 'none',
+    },
 });
 
 class AdminPanel extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
+        this.setState({
+            nume: '',
+            locatie: '',
+            tip: '',
+            specializare: '',
+            an_absolvire: ''
+        });
         getSpitale()
             .then(response => {
                 response.json()
@@ -192,12 +238,13 @@ class AdminPanel extends React.Component {
                                                                       this.handleEditMedic(row.id)
                                                                   }}>
                                 <EditIcon fontSize="small"/>
-                            </IconButton><IconButton aria-label="Delete" className={'delete_icon'}
-                                                     onClick={() => {
-                                                         this.handleDeleteMedic(row.id)
-                                                     }}>
-                                <DeleteIcon fontSize="small"/>
-                            </IconButton></TableCell>
+                            </IconButton>
+                                <IconButton aria-label="Delete" className={'delete_icon'}
+                                            onClick={() => {
+                                                this.handleDeleteMedic(row.id)
+                                            }}>
+                                    <DeleteIcon fontSize="small"/>
+                                </IconButton></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -299,7 +346,92 @@ class AdminPanel extends React.Component {
     };
 
 
+    handleOpenM = () => {
+        this.setState({open_m: true});
+    };
+    handleOpenH = () => {
+
+        this.setState({open_h: true});
+    };
+
+    handleClose = () => {
+        this.setState({open_m: false, open_h: false});
+    };
+
+    handleFieldChange = (event) => {
+        this.setState({
+            [event.target.id]: event.target.value
+        })
+    };
+
+    handleAddMedic = () => {
+
+        addMedic({
+            'nume': this.state.nume,
+            'an': this.state.an_absolvire,
+            'spec':  JSON.stringify(this.state.specializare)
+        }).then(response => {
+            response.json()
+                .then(responseMessage => {
+                    if (responseMessage.success || responseMessage.success === 'true') {
+                        const hos = {
+                            id: responseMessage.id,
+                            'nume': this.state.nume,
+                            'an_absolvire': this.state.an_absolvire,
+                            'specializare': this.state.specializare
+                        };
+                        let arr = this.state.medics;
+                        arr.push(hos);
+                        this.setState({
+                            medics: arr,
+                            open_m: false,
+                            open_h: false,
+                            nume: '',
+                            locatie: '',
+                            tip: '',
+                            specializare: '',
+                            an_absolvire: ''
+                        })
+                    }
+                })
+        });
+    };
+    handleAddHospital = () => {
+
+        addHospital({
+            'nume': this.state.nume,
+            'locatie': this.state.locatie,
+            'tip': this.state.tip
+        }).then(response => {
+            response.json()
+                .then(responseMessage => {
+                    if (responseMessage.success || responseMessage.success === 'true') {
+                        const hos = {
+                            id: responseMessage.id,
+                            'nume': this.state.nume,
+                            'locatie': this.state.locatie,
+                            'tip': this.state.tip
+                        };
+                        let arr = this.state.hospitals;
+                        arr.push(hos);
+                        this.setState({
+                            hospitals: arr,
+                            open_m: false,
+                            open_h: false,
+                            nume: '',
+                            locatie: '',
+                            tip: '',
+                            specializare: '',
+                            an_absolvire: ''
+                        })
+                    }
+                })
+        });
+    };
+
     render() {
+        const {classes} = this.props;
+
         return (
             <Container>
                 <br/>
@@ -314,7 +446,12 @@ class AdminPanel extends React.Component {
                 <br/>
                 <br/>
                 <hr/>
-                <h2>Hospital</h2>
+                <div className={'title_cat'}>
+                    <h2>Hospital</h2><IconButton aria-label="Delete" className={'delete_icon'} onClick={
+                    this.handleOpenH
+                }>
+                    <AddCircleOutline fontSize="default"/>
+                </IconButton></div>
                 <hr/>
                 {
                     this.state && this.state.have_hospitals ? this.renderHospitals() : null
@@ -322,16 +459,114 @@ class AdminPanel extends React.Component {
                 <br/>
                 <br/>
                 <hr/>
-                <h2>Doctors</h2>
+                <div className={'title_cat'}><h2>Doctors</h2><IconButton aria-label="Delete" className={'delete_icon'}
+                                                                         onClick={
+                                                                             this.handleOpenM
+                                                                         }>
+                    <AddCircleOutline fontSize="default"/>
+                </IconButton></div>
                 <hr/>
                 <br/>
                 {
                     this.state && this.state.have_medics ? this.renderMedics() : null
                 }
 
+
+                {
+                    this.state && this.state.open_h ? <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={this.state.open_h}
+                        onClose={this.handleClose}
+                    >
+                        <div style={getModalStyle()} className={classes.paper}>
+                            <TextField
+                                id="nume"
+                                label="Nume"
+                                className={'profile_input'}
+                                value={this.state.nume}
+                                margin="normal"
+                                onChange={this.handleFieldChange}
+                                variant="outlined"
+                            />
+                            <TextField
+                                id="locatie"
+                                label="Locatie"
+                                className={'profile_input'}
+                                value={this.state.locatie}
+                                margin="normal"
+                                onChange={this.handleFieldChange}
+                                variant="outlined"
+                            />
+                            <TextField
+                                id="tip"
+                                label="Tip"
+                                className={'profile_input'}
+                                value={this.state.tip}
+                                margin="normal"
+                                onChange={this.handleFieldChange}
+                                variant="outlined"
+                            />
+                            <Button
+                                block
+                                onClick={this.handleAddHospital}
+                                type="submit"
+                                className={'update-button'}
+                            >
+                                Add Hospital
+                            </Button>
+                        </div>
+                    </Modal> : ''
+                }
+                {
+                    this.state && this.state.open_m ? <Modal
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                        open={this.state.open_m}
+                        onClose={this.handleClose}
+                    >
+                        <div style={getModalStyle()} className={classes.paper}>
+                            <TextField
+                                id="nume"
+                                label="Nume"
+                                className={'profile_input'}
+                                value={this.state.nume}
+                                margin="normal"
+                                onChange={this.handleFieldChange}
+                                variant="outlined"
+                            />
+                            <TextField
+                                id="an_absolvire"
+                                label="An absolvire"
+                                className={'profile_input'}
+                                value={this.state.an_absolvire}
+                                margin="normal"
+                                onChange={this.handleFieldChange}
+                                variant="outlined"
+                            />
+                            <TextField
+                                id="specializare"
+                                label="Specializare"
+                                className={'profile_input'}
+                                value={this.state.specializare}
+                                margin="normal"
+                                onChange={this.handleFieldChange}
+                                variant="outlined"
+                            />
+                            <Button
+                                block
+                                onClick={this.handleAddMedic}
+                                type="submit"
+                                className={'update-button'}
+                            >
+                                Add Medic
+                            </Button>
+                        </div>
+                    </Modal> : ''
+                }
             </Container>
         );
     }
 }
 
-export default AdminPanel;
+export default withStyles(styles)(AdminPanel);

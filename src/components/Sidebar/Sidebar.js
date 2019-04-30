@@ -5,6 +5,7 @@ import './Sidebar.css';
 import Home from '@material-ui/icons/Home';
 import Group from '@material-ui/icons/Group';
 import Info from '@material-ui/icons/Info';
+import VerifiedUser from '@material-ui/icons/VerifiedUser';
 import {withRouter} from 'react-router-dom';
 
 class Sidebar extends React.Component {
@@ -25,19 +26,29 @@ class Sidebar extends React.Component {
                         Home
                     </NavText>
                 </NavItem>
+                {localStorage.getItem('userDetails') && JSON.parse(localStorage.getItem('userDetails')).type === 'admin' ?
+                    <NavItem eventKey="admin">
+                        <NavIcon> <VerifiedUser/></NavIcon>
+
+                        <NavText>
+                            Admin Panel
+                        </NavText>
+                    </NavItem> : null}
+
                 <NavItem eventKey="contact">
                     <NavIcon> <Group/></NavIcon>
 
                     <NavText>
                         Contact
                     </NavText>
-                </NavItem><NavItem eventKey="about">
-                <NavIcon> <Info/></NavIcon>
+                </NavItem>
+                <NavItem eventKey="about">
+                    <NavIcon> <Info/></NavIcon>
 
-                <NavText>
-                    About
-                </NavText>
-            </NavItem>
+                    <NavText>
+                        About
+                    </NavText>
+                </NavItem>
             </SideNav.Nav>
         </SideNav>
         </div>
