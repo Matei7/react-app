@@ -138,7 +138,7 @@ class MedicProfile extends React.Component {
     displayProfile = () => {
 
         const user_data = this.state.data;
-        const labelRating = 'Current Rating: ' + this.state.current_rating;
+        const labelRating = 'Current Rating: ' + this.state.current_rating.toFixed(2);
         return (<Segment style={{padding: '8em 0em'}} vertical>
             <Grid container stackable verticalAlign='middle'>
                 <Grid.Row>

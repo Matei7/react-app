@@ -34,3 +34,7 @@ img.ui.medium.image {
         margin: 0 auto !important;
     }
 }
+
+.chart_icon {
+    left: 11px;
+}

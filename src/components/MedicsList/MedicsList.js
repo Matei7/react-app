@@ -2,12 +2,14 @@ import './MedicsList.css';
 import React from 'react';
 import {Container} from 'reactstrap';
 import {getMedici} from 'shared/api';
-import UserCard from 'components/MedicCard/MedicCard'
+import UserCard from 'components/MedicCard/MedicCard';
+import Chart from 'react-google-charts';
 
 class MedicsList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state={};
+        this.chartData = [['Doctors', '', 'Rating']];
     }
 
     componentDidMount() {
@@ -27,26 +29,50 @@ class MedicsList extends React.Component {
                     .then(res => {
                         const data = res.data;
                         this.setState({
-                            data
+                            data: data,
+                            nota: res.nota
                         });
                     });
             });
     }
 
     render() {
-        const {data} = this.state;
+        let data = this.state ? this.state.data : null;
         return (
             <Container>
                 <div className={'hospital_title'}>
-                    <span className={'hospital_title_text'} >    {this.state.hospital_name}  </span>
+                    <span className={'hospital_title_text'}>    {this.state.hospital_name}  </span>
                 </div>
                 {data ? data.map(element => {
+                    this.chartData.push([element.nume, 0, element.rating]);
                     return (
 
                         <UserCard key={element.id} user={element}/>
 
                     )
                 }) : 'No data'}
+
+                {
+                    this.chartData.length > 1 ? <Chart
+                        width={1140}
+                        height={500}
+                        chartType="ColumnChart"
+                        loader={<div>Loading Chart</div>}
+                        data={this.chartData}
+                        options={{
+                            title: "Rating of Hospital's Doctors",
+                            chartArea: {width: '60%'},
+                            hAxis: {
+                                title: 'Rating average: ' + this.state.nota.toFixed(2),
+                                minValue: 0,
+                            },
+                            vAxis: {
+                                title: 'Doctors',
+                            },
+                        }}
+                        legendToggle
+                    /> : ''
+                }
 
             </Container>
         );
