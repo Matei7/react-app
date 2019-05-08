@@ -6,6 +6,7 @@ import Home from '@material-ui/icons/Home';
 import Group from '@material-ui/icons/Group';
 import Info from '@material-ui/icons/Info';
 import VerifiedUser from '@material-ui/icons/VerifiedUser';
+import MapTwoTone from '@material-ui/icons/MapTwoTone';
 import {withRouter} from 'react-router-dom';
 
 class Sidebar extends React.Component {
@@ -35,7 +36,13 @@ class Sidebar extends React.Component {
                         </NavText>
                     </NavItem> : null}
 
-                <NavItem eventKey="contact">
+                <NavItem eventKey="map">
+                    <NavIcon> <MapTwoTone/></NavIcon>
+
+                    <NavText>
+                        Hospital Locations
+                    </NavText>
+                </NavItem> <NavItem eventKey="contact">
                     <NavIcon> <Group/></NavIcon>
 
                     <NavText>

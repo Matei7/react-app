@@ -11,6 +11,7 @@ import Login from "./components/UserActions/Login";
 import Profile from "./components/UserActions/Profile";
 import Register from "./components/UserActions/Register";
 import AdminPanel from "./components/Admin/AdminPanel";
+import MapDetails from "./components/Map/MapDetails";
 
 
 class App extends Component {
@@ -56,6 +57,7 @@ class App extends Component {
                     <Route exact path="/" component={HospitalList}/>
                     <Route path="/medics" component={MedicsList}/>
                     <Route path="/hospital" component={HospitalList}/>
+                    <Route path="/map" component={MapDetails}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/medic" component={MedicProfile}/>
